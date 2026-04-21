@@ -27,9 +27,17 @@ You'll also need a mumo API key:
 
 ## Using the panel
 
-Once installed and keyed, ask Claude Code architecture questions, plan reviews, or contested decisions — the skill auto-triggers and calls the panel. You can also be explicit: "run this by a mumo panel" or "get me a second opinion from mumo."
+The skill auto-triggers on architecture tradeoffs, plan and design reviews, pre-launch pressure tests, and contested product or pricing decisions — situations where multiple perspectives change the answer. It deliberately skips factual lookups, routine refactoring, and code generation from a clear spec. You can also invoke it explicitly: "run this by a mumo panel" or "get me a second opinion from mumo."
 
-See [mumo.chat/mcp](https://mumo.chat/mcp) for the full tool reference, the deliberation loop, and worked examples.
+### Try it first
+
+Ask Claude Code something the panel will want to engage with:
+
+> Postgres or MongoDB for our event store given 50k events/day, a Postgres-experienced team, and a 3-month runway? What would we regret 6 months in?
+
+The first round returns each model's prose plus a cross-model claim map showing where the panel agrees and where it splits. You can stop there, or `append_round` with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT) to steer further.
+
+See [mumo.chat/mcp](https://mumo.chat/mcp) for the tool reference, the deliberation loop, and prompt patterns. The canonical trigger language lives in [`skills/mumo/SKILL.md`](skills/mumo/SKILL.md) — that's what Claude Code loads.
 
 ## Links
 
