@@ -19,9 +19,9 @@ Full setup at https://mumo.chat/mcp.
 
 ## Default workflow
 
-**Start with a single round.** Call `create_deliberation` with `rounds: 1` and pass `application: "Claude Code"`. The first response contains each model's prose plus a cross-model claim map showing where the panel agrees and where it splits. One round is often enough.
+**Start with a single round.** Call `create_deliberation` with `rounds: 1` and pass `application: "Claude Code"`. The first response contains each model's prose plus a cross-model claim map showing where the panel agrees and where it splits.
 
-**Read the claim map before continuing.** Agreements collapse into single rows; splits fan out with each model's position. If the panel has converged on the parts that matter, you're done. If there are unresolved splits worth steering, call `append_round`.
+**Read the claim map before continuing.** Agreements collapse into single rows; splits fan out with each model's position. If the panel has converged on the parts that matter, you may be done. If there are unresolved splits worth steering, call `append_round`.
 
 **Steer with typed snippets, not freeform prompts.** When appending, pass `snippets[]` with verbatim quotes from prior responses tagged by type:
 
