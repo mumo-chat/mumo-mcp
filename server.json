@@ -1,7 +1,7 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "chat.mumo/mcp",
-  "description": "Multi-model deliberation as MCP tools, with an auto-triggering skill. Consult a panel of models on contested decisions where a single model might be confidently wrong.",
+  "description": "Consult a multi-model panel on contested decisions via MCP: architecture, plan review, strategy.",
   "version": "0.1.0",
   "repository": {
     "url": "https://github.com/mumo-chat/mumo-mcp",
