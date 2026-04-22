@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "chat.mumo/mcp",
-  "description": "Consult a multi-model panel on contested decisions via MCP: architecture, plan review, strategy.",
-  "version": "0.1.0",
+  "description": "Multi-model responses + cross-model reactions. Want more rounds? Context carries automatically. Stop when you have what you need.",
+  "version": "0.1.1",
   "repository": {
     "url": "https://github.com/mumo-chat/mumo-mcp",
     "source": "github"

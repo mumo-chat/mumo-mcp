@@ -1,13 +1,26 @@
 # mumo — Claude Code + Cowork plugin
 
-Multi-model deliberation as MCP tools, with an auto-triggering skill. Consult a panel of models (Claude, GPT, Gemini, Grok, Qwen, and more) on contested decisions — architecture, plan review, pricing, strategy — where a single model might be confidently wrong.
+**Multi-model responses + cross-model reactions. Want more rounds? Context carries automatically. Stop when you have what you need.**
 
-Works in both Claude Code (developer audience) and Claude Cowork (knowledge-worker audience). Same plugin, same skill, different distribution marketplaces.
+Claude, GPT, Gemini, Grok, Qwen, GLM, Kimi in parallel. For contested decisions — architecture, plan review, pricing, strategy — where a single model might be confidently wrong.
+
+Works in both Claude Code (developer audience) and Claude Cowork (knowledge-worker audience). Same plugin, same skill, different distribution marketplaces. For Cursor, see [`mumo-chat/mumo-cursor`](https://github.com/mumo-chat/mumo-cursor). For VS Code (GitHub Copilot), see [`mumo-chat/mumo-vscode`](https://github.com/mumo-chat/mumo-vscode).
+
+## When to use
+
+Reach for mumo when:
+
+- **Architecture and design reviews** — "Postgres or MongoDB for our event store?" "Is this migration safe under concurrent writes?"
+- **Plan and pre-launch pressure tests** — "What would we regret 6 months in?" "Where's the biggest risk in this spec?"
+- **Contested product or pricing decisions** — "Should this feature be paid or free?" "Which of these positionings actually converts?"
+- **Strategy with real cost** — anywhere a confidently-wrong single model could push a team in the wrong direction for a week.
+
+The bundled skill auto-triggers on this category and stays quiet on factual lookups, routine refactoring, and code generation from a clear spec.
 
 ## What's in the box
 
 - **MCP server** — `https://mumo.chat/api/mcp`, five tools: `create_deliberation`, `append_round`, `get_session`, `list_sessions`, `list_models`
-- **Auto-triggering skill** — `skills/mumo/SKILL.md` tells the agent *when* to reach for the panel (architecture tradeoffs, plan reviews, contested decisions) so you don't have to
+- **Auto-triggering skill** — `skills/mumo/SKILL.md` tells the agent *when* to reach for the panel so you don't have to
 
 ## Install — Claude Code
 
@@ -26,30 +39,15 @@ Open Claude Desktop → **Cowork** tab → **Customize** → **Browse plugins** 
 
 ## Install — VS Code (GitHub Copilot)
 
-Once listed in the [GitHub MCP Registry](https://github.com/mcp), install from VS Code's Extensions panel: type `@mcp mumo`, click **Install**, and VS Code writes the entry to your `mcp.json`.
+Install the [**mumo** extension](https://marketplace.visualstudio.com/items?itemName=mumo.mumo-vscode) from the Visual Studio Marketplace. It registers the MCP server natively and stores your key in VS Code's `SecretStorage` — no `MUMO_API_KEY` env-var required.
 
-Until the Registry listing lands, add it manually — run the **MCP: Open User Configuration** command in VS Code and paste:
+For the full story and manual-install alternatives, see [`mumo-chat/mumo-vscode`](https://github.com/mumo-chat/mumo-vscode).
 
-```json
-{
-  "servers": {
-    "mumo": {
-      "url": "https://mumo.chat/api/mcp",
-      "requestInit": {
-        "headers": {
-          "Authorization": "Bearer mmo_live_YOUR_KEY_HERE"
-        }
-      }
-    }
-  }
-}
-```
-
-The MCP server gives you tool access; the auto-triggering skill from this repo is not yet bundled natively in VS Code. For the skill experience, use Claude Code or Cowork.
+The auto-triggering skill from this repo is not bundled in the VS Code extension — Copilot's agent mode routes to the MCP server organically when you mention mumo or ask for a panel. For the explicit skill experience, use Claude Code or Cowork.
 
 ## API key setup
 
-Both surfaces need a mumo API key:
+Claude Code and Cowork both need a mumo API key:
 
 1. Sign up at https://mumo.chat and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`)
 2. Export it in your shell:
@@ -60,11 +58,15 @@ Both surfaces need a mumo API key:
 
 ## Using the panel
 
-The skill auto-triggers on architecture tradeoffs, plan and design reviews, pre-launch pressure tests, and contested product or pricing decisions — situations where multiple perspectives change the answer. It deliberately skips factual lookups, routine refactoring, and code generation from a clear spec. You can also invoke it explicitly: "run this by a mumo panel" or "get me a second opinion from mumo."
+Invoke the skill explicitly if the agent doesn't reach for it on its own:
+
+- "Run this by a mumo panel"
+- "Get me a second opinion from mumo on…"
+- "Ask mumo about…"
 
 ### Try it first
 
-Ask Claude Code something the panel will want to engage with:
+Ask Claude Code or Cowork something the panel will want to engage with:
 
 > Postgres or MongoDB for our event store given 50k events/day, a Postgres-experienced team, and a 3-month runway? What would we regret 6 months in?
 
@@ -77,6 +79,8 @@ See [mumo.chat/mcp](https://mumo.chat/mcp) for the tool reference, the deliberat
 - Product — https://mumo.chat
 - MCP reference — https://mumo.chat/docs/mcp/reference
 - REST API — https://mumo.chat/docs/api
+- Cursor plugin — https://github.com/mumo-chat/mumo-cursor
+- VS Code extension — https://github.com/mumo-chat/mumo-vscode
 - Issues — https://github.com/mumo-chat/mumo-mcp/issues
 
 ## License
