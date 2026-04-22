@@ -1,13 +1,15 @@
-# mumo — Claude Code plugin
+# mumo — Claude Code + Cowork plugin
 
-Multi-model deliberation as MCP tools, with an auto-triggering skill. Consult a panel of models (Claude, GPT, Gemini, Grok, Qwen, and more) on contested decisions — architecture, plan review, pricing — where a single model might be confidently wrong.
+Multi-model deliberation as MCP tools, with an auto-triggering skill. Consult a panel of models (Claude, GPT, Gemini, Grok, Qwen, and more) on contested decisions — architecture, plan review, pricing, strategy — where a single model might be confidently wrong.
+
+Works in both Claude Code (developer audience) and Claude Cowork (knowledge-worker audience). Same plugin, same skill, different distribution marketplaces.
 
 ## What's in the box
 
 - **MCP server** — `https://mumo.chat/api/mcp`, five tools: `create_deliberation`, `append_round`, `get_session`, `list_sessions`, `list_models`
-- **Auto-triggering skill** — `skills/mumo/SKILL.md` tells Claude Code *when* to reach for the panel (architecture tradeoffs, plan reviews, contested decisions) so you don't have to
+- **Auto-triggering skill** — `skills/mumo/SKILL.md` tells the agent *when* to reach for the panel (architecture tradeoffs, plan reviews, contested decisions) so you don't have to
 
-## Install
+## Install — Claude Code
 
 Inside Claude Code:
 
@@ -16,14 +18,22 @@ Inside Claude Code:
 /plugin install mumo
 ```
 
-You'll also need a mumo API key:
+## Install — Claude Cowork
+
+Open Claude Desktop → **Cowork** tab → **Customize** → **Browse plugins** → search for `mumo` → **Install**. Or browse the full catalog at [claude.com/plugins](https://claude.com/plugins/).
+
+> **Note:** Claude Code and Cowork have separate plugin panels backed by different marketplaces. Installing in one surface does **not** auto-install in the other — install in each separately.
+
+## API key setup
+
+Both surfaces need a mumo API key:
 
 1. Sign up at https://mumo.chat and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`)
 2. Export it in your shell:
    ```bash
    export MUMO_API_KEY=mmo_live_YOUR_KEY_HERE
    ```
-3. Restart Claude Code
+3. Restart Claude Code or Claude Cowork
 
 ## Using the panel
 
