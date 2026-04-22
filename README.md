@@ -24,6 +24,29 @@ Open Claude Desktop → **Cowork** tab → **Customize** → **Browse plugins** 
 
 > **Note:** Claude Code and Cowork have separate plugin panels backed by different marketplaces. Installing in one surface does **not** auto-install in the other — install in each separately.
 
+## Install — VS Code (GitHub Copilot)
+
+Once listed in the [GitHub MCP Registry](https://github.com/mcp), install from VS Code's Extensions panel: type `@mcp mumo`, click **Install**, and VS Code writes the entry to your `mcp.json`.
+
+Until the Registry listing lands, add it manually — run the **MCP: Open User Configuration** command in VS Code and paste:
+
+```json
+{
+  "servers": {
+    "mumo": {
+      "url": "https://mumo.chat/api/mcp",
+      "requestInit": {
+        "headers": {
+          "Authorization": "Bearer mmo_live_YOUR_KEY_HERE"
+        }
+      }
+    }
+  }
+}
+```
+
+The MCP server gives you tool access; the auto-triggering skill from this repo is not yet bundled natively in VS Code. For the skill experience, use Claude Code or Cowork.
+
 ## API key setup
 
 Both surfaces need a mumo API key:

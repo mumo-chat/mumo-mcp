@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "chat.mumo/mcp",
+  "description": "Multi-model deliberation as MCP tools, with an auto-triggering skill. Consult a panel of models on contested decisions where a single model might be confidently wrong.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/mumo-chat/mumo-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mumo.chat/api/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {MUMO_API_KEY}",
+          "is_secret": true
+        }
+      ]
+    }
+  ]
+}
