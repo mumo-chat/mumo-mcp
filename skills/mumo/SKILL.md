@@ -42,6 +42,7 @@ The model receiving a snippet sees the framing. A freeform prompt without snippe
 | Read session state | `get_session` |
 | User names specific models | `list_models` first |
 | Find sessions awaiting next round | `list_sessions` with `status: "ready"` |
+| Check current wallet balance | `get_credit` |
 
 ## Moderator name
 

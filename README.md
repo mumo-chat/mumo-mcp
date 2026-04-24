@@ -19,7 +19,7 @@ The bundled skill auto-triggers on this category and stays quiet on factual look
 
 ## What's in the box
 
-- **MCP server** — `https://mumo.chat/api/mcp`, five tools: `create_deliberation`, `append_round`, `get_session`, `list_sessions`, `list_models`
+- **MCP server** — `https://mumo.chat/api/mcp`, six tools: `create_deliberation`, `append_round`, `get_session`, `list_sessions`, `list_models`, `get_credit`
 - **Auto-triggering skill** — `skills/mumo/SKILL.md` tells the agent *when* to reach for the panel so you don't have to
 
 ## Install — Claude Code

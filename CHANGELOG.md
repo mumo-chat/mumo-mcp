@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 — 2026-04-24
+
+- Added `get_credit` as the sixth MCP tool — fetches the caller's wallet: effective balance, per-bucket breakdown (free / subscription / refill with reset timing + rollover cap + subscription status), autorefill state, and FIFO debit order. Mirrors the new `GET /api/credit` REST endpoint. README tool list and SKILL.md tool map updated to reflect the sixth tool.
+
 ## 0.1.2 — 2026-04-23
 
 Skill content update, no runtime behavior change. Mirrors the MCP doc demotion shipping on mumo.chat.
