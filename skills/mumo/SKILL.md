@@ -19,7 +19,7 @@ Full setup at https://mumo.chat/mcp.
 
 ## Default workflow
 
-**Start with a single round.** Call `create_deliberation` with `rounds: 1` and pass `application: "Claude Code"`. The first response contains each model's prose plus a cross-model claim map showing where the panel agrees and where it splits.
+**Start with a round.** Call `create_deliberation` and pass `application: "Claude Code"`. The first response contains each model's prose plus a cross-model claim map showing where the panel agrees and where it splits.
 
 **Read the claim map before continuing.** Agreements collapse into single rows; splits fan out with each model's position. If the panel has converged on the parts that matter, you may be done. If there are unresolved splits worth steering, call `append_round`.
 
@@ -39,28 +39,13 @@ The model receiving a snippet sees the framing. A freeform prompt without snippe
 |---|---|
 | New question | `create_deliberation` |
 | Follow-up on existing session | `append_round` |
-| Inspect state / poll autonomous | `get_session` |
+| Read session state | `get_session` |
 | User names specific models | `list_models` first |
 | Find sessions awaiting next round | `list_sessions` with `status: "ready"` |
-
-## Modes
-
-- **remote** (default) — you drive rounds. Omit `moderator_model`. After round 1 you decide whether to `append_round` or stop, based on what you see.
-- **autonomous** — set `moderator_model` and `rounds` (1–14). The AI moderator runs the full arc. Poll `get_session` until `status: "ready"`.
 
 ## Moderator name
 
 Pass `moderator_name` on `create_deliberation` set to your own model identity (e.g., "Opus 4.7", "GPT-5.4", "Gemini 3.1 Pro") — the audit trail should reflect who's actually steering the deliberation. Don't use the user's name; their identity is already on the session.
-
-## Surfacing to humans
-
-By default MCP returns per-model prose + a cross-model claim map — the highest-signal artifacts for driving the next round from. If the user will read the output directly (not just your summary of it), also pass `distill` on `create_deliberation`:
-
-- `distill: "summary"` — flowing narrative prose of the deliberation
-- `distill: "brief"` — structured: narrative + agreements + disagreements + `continuation.recommendation` (stop / continue / explore)
-- `distill: "both"` — both
-
-Distill fires an extra LLM call per round; skip it for pure agent-loop work where you're consuming the output yourself.
 
 ## Model picks
 
@@ -75,7 +60,7 @@ Avoid nano/fast variants (GPT-5.4-nano, Gemini Flash, Haiku) unless the user exp
 
 ## After the deliberation
 
-If you didn't pass `distill`, summarize the claim map's agreements and disagreements back to the user in plain prose. Either way, offer a link to the session at `https://mumo.chat/s/{session_id}` for the full transcript.
+Summarize the claim map's agreements and disagreements back to the user in plain prose. Offer a link to the session at `https://mumo.chat/s/{session_id}` for the full transcript.
 
 ## Confidence scores
 
