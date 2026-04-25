@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "chat.mumo/mcp",
-  "description": "Multi-model responses + cross-model reactions. Want more rounds? Context carries automatically. Stop when you have what you need.",
-  "version": "0.1.3",
+  "description": "Multi-model AI deliberation for agents. Run hard decisions through Claude, GPT, Gemini, Grok, and others — get their raw responses, structured agreement and divergence across models, and a clear view of where human judgment matters. Peer review for technical plans, architecture choices, and code decisions.",
+  "version": "0.1.4",
   "repository": {
     "url": "https://github.com/mumo-chat/mumo-mcp",
     "source": "github"
