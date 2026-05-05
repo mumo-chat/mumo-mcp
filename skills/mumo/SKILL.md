@@ -1,6 +1,15 @@
 ---
 name: mumo
 description: Multi-model deliberation via mumo's MCP server. Best for contested architecture/product decisions, design reviews, pressure-testing a pre-launch spec, resolving tradeoffs with multiple defensible framings, or explicit user requests for a mumo panel. Requires the mumo MCP server to be connected.
+allowed-tools:
+  - mcp__mumo__create_deliberation
+  - mcp__mumo__wait_for_round
+  - mcp__mumo__append_round
+  - mcp__mumo__get_session
+  - mcp__mumo__list_sessions
+  - mcp__mumo__list_models
+  - mcp__mumo__get_credit
+argument-hint: "[question or topic for the panel]"
 ---
 
 # mumo
@@ -9,13 +18,7 @@ mumo runs deliberations across multiple AI models. Use it when independent persp
 
 ## Setup
 
-The MCP server needs a mumo API key.
-
-1. Create a key at https://mumo.chat/settings/api-keys (keys start with `mmo_live_`)
-2. Export it: `export MUMO_API_KEY=mmo_live_…`
-3. Restart Claude Code
-
-If mumo tools return auth errors, tell the user and stop. Full setup: https://mumo.chat/install
+The plugin prompts for a mumo API key at install time. If the key is missing or tools return auth errors, direct the user to https://mumo.chat/settings/api-keys to create one (keys start with `mmo_live_`).
 
 ## When to use
 

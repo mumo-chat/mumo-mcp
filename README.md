@@ -47,14 +47,12 @@ The auto-triggering skill from this repo is not bundled in the VS Code extension
 
 ## API key setup
 
-Claude Code and Cowork both need a mumo API key:
+The plugin prompts for your mumo API key at install time and stores it securely in your system keychain.
 
 1. Sign up at https://mumo.chat and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`)
-2. Export it in your shell:
-   ```bash
-   export MUMO_API_KEY=mmo_live_YOUR_KEY_HERE
-   ```
-3. Restart Claude Code or Claude Cowork
+2. Paste it when the plugin prompts you during install/enable
+
+If you need to update the key later, reinstall or reconfigure the plugin. For manual or dev setups, you can also export `MUMO_API_KEY` as an environment variable.
 
 ## Using the panel
 

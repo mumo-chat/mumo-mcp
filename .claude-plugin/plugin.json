@@ -25,5 +25,14 @@
     "design-review",
     "code-review"
   ],
-  "mcpServers": "../.mcp.json"
+  "mcpServers": "../.mcp.json",
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "mumo API Key",
+      "description": "Platform key from https://mumo.chat/settings/api-keys (starts with mmo_live_)",
+      "sensitive": true,
+      "required": true
+    }
+  }
 }

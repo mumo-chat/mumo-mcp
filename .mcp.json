@@ -4,7 +4,7 @@
       "type": "http",
       "url": "https://mumo.chat/api/mcp",
       "headers": {
-        "Authorization": "Bearer ${MUMO_API_KEY}"
+        "Authorization": "Bearer ${user_config.api_key}"
       }
     }
   }
