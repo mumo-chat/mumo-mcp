@@ -1,13 +1,13 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "mumo",
-  "version": "0.1.3",
-  "description": "Multi-model responses + cross-model reactions. Want more rounds? Context carries automatically. Stop when you have what you need.",
+  "version": "0.2.0",
+  "description": "Multi-model deliberation panel. Diverse AI voices + claim-level reactions on contested decisions.",
   "author": {
     "name": "Sourced LLC",
     "url": "https://mumo.chat"
   },
-  "homepage": "https://mumo.chat/mcp",
+  "homepage": "https://mumo.chat/install",
   "repository": {
     "type": "git",
     "url": "https://github.com/mumo-chat/mumo-mcp.git"
@@ -21,8 +21,9 @@
     "gpt",
     "gemini",
     "panel",
-    "code-review",
-    "architecture"
+    "architecture",
+    "design-review",
+    "code-review"
   ],
-  "mcpServers": "./.mcp.json"
+  "mcpServers": "../.mcp.json"
 }

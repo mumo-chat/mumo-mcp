@@ -1,23 +1,14 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "chat.mumo/mcp",
-  "description": "Multi-model AI deliberation for agents. Run hard decisions through Claude, GPT, Gemini, Grok, and others — get their raw responses, structured agreement and divergence across models, and a clear view of where human judgment matters. Peer review for technical plans, architecture choices, and code decisions.",
-  "version": "0.1.4",
-  "repository": {
-    "url": "https://github.com/mumo-chat/mumo-mcp",
-    "source": "github"
-  },
-  "remotes": [
-    {
-      "type": "streamable-http",
-      "url": "https://mumo.chat/api/mcp",
-      "headers": [
-        {
-          "name": "Authorization",
-          "value": "Bearer {MUMO_API_KEY}",
-          "is_secret": true
-        }
-      ]
-    }
+  "version": "0.2.0",
+  "description": "mumo multi-model deliberation — structured panel discussions across frontier AI models with claim-level reactions and cross-model claim maps",
+  "tools": [
+    "create_deliberation",
+    "wait_for_round",
+    "get_session",
+    "append_round",
+    "list_sessions",
+    "list_models",
+    "get_credit"
   ]
 }
