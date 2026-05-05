@@ -1,0 +1,27 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "mumo",
+  "description": "Multi-model deliberation panel for Claude Code.",
+  "owner": {
+    "name": "Sourced LLC"
+  },
+  "plugins": [
+    {
+      "name": "mumo",
+      "source": "./",
+      "description": "Multi-model deliberation panel. Diverse AI voices + claim-level reactions on contested decisions.",
+      "homepage": "https://mumo.chat/install",
+      "repository": "https://github.com/mumo-chat/mumo-mcp",
+      "license": "MIT",
+      "keywords": [
+        "mcp",
+        "deliberation",
+        "multi-model",
+        "panel",
+        "architecture",
+        "design-review",
+        "code-review"
+      ]
+    }
+  ]
+}
