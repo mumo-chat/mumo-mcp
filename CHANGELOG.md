@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 — 2026-05-04
+
+Architecture rewrite. SKILL.md becomes a lean kernel; detailed guidance moves to on-demand files.
+
+- `skills/mumo/SKILL.md` — rewritten as a compact kernel: deliberation loop, snippet-as-attention doctrine, non-forwarding test, continuation/stop rules, playbook index, user-preferences section. Synthesis guidance deferred to reference.
+- `skills/mumo/playbooks/` — four cognitive-shape playbooks: `contested-decision`, `design-review`, `uncertainty-expansion`, `red-team`. Loaded at most one per session when the shape clearly fits.
+- `skills/mumo/reference/` — five reference docs: `claim-maps`, `snippets`, `model-selection`, `synthesis`, `operating-notes`. Loaded on demand for extended mechanics.
+- `plugin.json` bumped to 0.2.0, homepage changed to `/install`.
+- `server.json` simplified to tool list + description, bumped to 0.2.0.
+- `wait_for_round` added to README tool list (was missing since 0.1.3).
+
 ## 0.1.3 — 2026-04-24
 
 - Added `get_credit` as the sixth MCP tool — fetches the caller's wallet: effective balance, per-bucket breakdown (free / subscription / refill with reset timing + rollover cap + subscription status), autorefill state, and FIFO debit order. Mirrors the new `GET /api/credit` REST endpoint. README tool list and SKILL.md tool map updated to reflect the sixth tool.

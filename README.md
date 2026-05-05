@@ -19,7 +19,7 @@ The bundled skill auto-triggers on this category and stays quiet on factual look
 
 ## What's in the box
 
-- **MCP server** — `https://mumo.chat/api/mcp`, six tools: `create_deliberation`, `append_round`, `get_session`, `list_sessions`, `list_models`, `get_credit`
+- **MCP server** — `https://mumo.chat/api/mcp`, seven tools: `create_deliberation`, `wait_for_round`, `append_round`, `get_session`, `list_sessions`, `list_models`, `get_credit`
 - **Auto-triggering skill** — `skills/mumo/SKILL.md` tells the agent *when* to reach for the panel so you don't have to
 
 ## Install — Claude Code
@@ -70,14 +70,14 @@ Ask Claude Code or Cowork something the panel will want to engage with:
 
 > Postgres or MongoDB for our event store given 50k events/day, a Postgres-experienced team, and a 3-month runway? What would we regret 6 months in?
 
-The first round returns each model's prose plus a cross-model claim map showing where the panel agrees and where it splits. You can stop there, or `append_round` with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT) to steer further.
+The first round returns each model's prose plus a cross-model claim map showing where the panel agrees and where it splits. You can stop there, or `append_round` with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT) — moderator attention on what mattered and why.
 
-See [mumo.chat/mcp](https://mumo.chat/mcp) for the tool reference, the deliberation loop, and prompt patterns. The canonical trigger language lives in [`skills/mumo/SKILL.md`](skills/mumo/SKILL.md) — that's what Claude Code loads.
+See [mumo.chat/install](https://mumo.chat/install) for setup and [mumo.chat/docs/mcp](https://mumo.chat/docs/mcp) for the tool reference. The canonical skill lives in [`skills/mumo/SKILL.md`](skills/mumo/SKILL.md) — that's what Claude Code loads.
 
 ## Links
 
 - Product — https://mumo.chat
-- MCP reference — https://mumo.chat/docs/mcp/reference
+- MCP reference — https://mumo.chat/docs/mcp
 - REST API — https://mumo.chat/docs/api
 - Cursor plugin — https://github.com/mumo-chat/mumo-cursor
 - VS Code extension — https://github.com/mumo-chat/mumo-vscode
