@@ -3,7 +3,7 @@
   "name": "mumo",
   "description": "Multi-model deliberation panel for Claude Code.",
   "owner": {
-    "name": "Sourced LLC"
+    "name": "mumo"
   },
   "plugins": [
     {
