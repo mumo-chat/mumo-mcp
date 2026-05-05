@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2 — 2026-05-05
+
+Removed `agents/mumo-moderator.md`. The agent positioned itself as the moderator role, but moderation is exactly what should stay with the primary agent — it owns the conversational context, the user's intent, and the cross-round steering decisions. A subagent that ran a "complete brief" panel was a thin operational helper at best, and the framing risked the primary agent over-delegating.
+
+- `agents/` directory removed.
+- README updated to drop the moderator subagent line.
+
 ## 0.2.1 — 2026-05-04
 
 Plugin architecture — mumo now installs and behaves like a native Claude Code capability.

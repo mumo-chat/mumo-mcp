@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "mumo",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Multi-model deliberation panel. Diverse AI voices + claim-level reactions on contested decisions.",
   "author": {
     "name": "mumo",
