@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.1 — 2026-05-04
+
+Plugin architecture — mumo now installs and behaves like a native Claude Code capability.
+
+- **API key via keychain**: `userConfig` with `sensitive: true` prompts for the key at install time and stores it in the system keychain. No more `export MUMO_API_KEY` in your shell.
+- **No permission prompts**: `allowed-tools` in SKILL.md pre-approves all seven MCP tools. Deliberations run without interruption.
+- **Moderator agent**: `agents/mumo-moderator.md` — a dedicated subagent with tool restrictions, high effort, and the mumo skill preloaded. Can run deliberations in an isolated context.
+- **Auto-triggering**: `when_to_use` frontmatter gives Claude richer context for deciding when to reach for mumo without being asked.
+- **Inline invocation**: `argument-hint` enables passing a question directly when invoking the skill.
+
 ## 0.2.0 — 2026-05-04
 
 Architecture rewrite. SKILL.md becomes a lean kernel; detailed guidance moves to on-demand files.
