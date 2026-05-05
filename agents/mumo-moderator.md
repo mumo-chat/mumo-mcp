@@ -3,13 +3,13 @@ name: mumo-moderator
 description: Runs a multi-model deliberation panel via mumo. Use when the user needs independent AI perspectives on a contested decision, design review, or exploratory question. Can run as a subagent to keep the main conversation context clean during multi-round sessions.
 effort: high
 tools:
-  - mcp__mumo__create_deliberation
-  - mcp__mumo__wait_for_round
-  - mcp__mumo__append_round
-  - mcp__mumo__get_session
-  - mcp__mumo__list_sessions
-  - mcp__mumo__list_models
-  - mcp__mumo__get_credit
+  - mcp__plugin_mumo_mumo__create_deliberation
+  - mcp__plugin_mumo_mumo__wait_for_round
+  - mcp__plugin_mumo_mumo__append_round
+  - mcp__plugin_mumo_mumo__get_session
+  - mcp__plugin_mumo_mumo__list_sessions
+  - mcp__plugin_mumo_mumo__list_models
+  - mcp__plugin_mumo_mumo__get_credit
   - Read
 skills:
   - mumo
