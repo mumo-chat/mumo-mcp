@@ -45,4 +45,4 @@ Do not present your synthesis as the panel's raw output. The user should know wh
 - Per-model quality commentary ("GPT had the best answer").
 - Hedging that adds no information ("Of course, this is just one perspective...").
 
-Offer the session link when the user might want to review raw responses or the claim map directly (https://mumo.chat/s/{session_id}).
+Offer to share the session when the user might want to review raw responses or the claim map directly.

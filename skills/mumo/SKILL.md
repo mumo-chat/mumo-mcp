@@ -10,6 +10,9 @@ allowed-tools:
   - mcp__mumo__list_models
   - mcp__mumo__get_credit
 argument-hint: "[question or topic for the panel]"
+when_to_use: |
+  Use when: architecture or design decisions with real tradeoffs, plan or spec review, red-team pressure testing, exploring unknowns or stress-testing assumptions, strategy questions with multiple defensible framings, or explicit user requests ("ask mumo", "run a mumo panel", "what do different models think").
+  Skip for: factual lookups, syntax help, routine code edits, or tasks where the user has already specified exactly what to build.
 ---
 
 # mumo
