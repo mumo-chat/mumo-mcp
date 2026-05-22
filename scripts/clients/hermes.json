@@ -1,0 +1,15 @@
+{
+  "client": "hermes",
+  "display_name": "Hermes Agent",
+  "target": "../mumo-hermes/SKILL.md",
+  "tokens": {
+    "APPLICATION_NAME": "\"Hermes Agent\"",
+    "MODERATOR_EXAMPLE": "the model Hermes is currently running as — Claude, GPT, Gemini, or the local model",
+    "INSTALL_URL": "https://mumo.chat/install/hermes",
+    "TOOL_NAMING_NOTE": "\n\nIn Hermes' tool registry these surface as `mcp_mumo_create_deliberation`, `mcp_mumo_wait_for_round`, etc."
+  },
+  "partials": {
+    "FRONTMATTER": "frontmatter.yml",
+    "SETUP_SECTION": "setup.md"
+  }
+}

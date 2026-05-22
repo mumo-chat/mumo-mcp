@@ -1,0 +1,16 @@
+{
+  "client": "claude-code",
+  "display_name": "Claude Code",
+  "target": "../mumo-claude/skills/mumo/SKILL.md",
+  "tokens": {
+    "APPLICATION_NAME": "\"Claude Code\"",
+    "MODERATOR_EXAMPLE": "\"Claude Opus 4.6\" or \"GPT-5.5\"",
+    "INSTALL_URL": "https://mumo.chat/install/claude-code",
+    "TOOL_NAMING_NOTE": "",
+    "DESCRIPTION_TAIL": "Requires the mumo MCP server to be connected."
+  },
+  "partials": {
+    "FRONTMATTER": "frontmatter.yml",
+    "SETUP_SECTION": "setup.md"
+  }
+}

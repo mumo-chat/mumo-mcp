@@ -1,0 +1,1 @@
+The plugin prompts for a mumo API key at install time. If the key is missing or tools return auth errors, direct the user to https://mumo.chat/settings/api-keys to create one (keys start with `mmo_live_`).

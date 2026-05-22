@@ -1,0 +1,29 @@
+---
+name: mumo
+description: {{DESCRIPTION_PREFIX}}
+version: 0.1.5
+author: mumo
+license: MIT
+platforms: [linux, macos, windows]
+required_environment_variables:
+  - name: MUMO_API_KEY
+    prompt: "mumo platform API key (mmo_live_*)"
+    help: "Create one at https://mumo.chat/settings/api-keys"
+    required_for: mumo MCP server authentication
+metadata:
+  hermes:
+    tags:
+      - deliberation
+      - decision-support
+      - multi-model
+      - design-review
+      - architecture-review
+      - plan-review
+      - mcp
+    related_skills:
+      - writing-plans
+      - plan
+      - requesting-code-review
+    requires_tools:
+      - mcp_mumo_create_deliberation
+---

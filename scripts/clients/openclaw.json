@@ -1,0 +1,17 @@
+{
+  "client": "openclaw",
+  "display_name": "OpenClaw",
+  "target": "../mumo-openclaw/SKILL.md",
+  "tokens": {
+    "APPLICATION_NAME": "\"OpenClaw\"",
+    "MODERATOR_EXAMPLE": "the model OpenClaw is currently running as — visible in your status line, often \"openai/gpt-5.4-nano\" or \"openai/gpt-5.5\"",
+    "INSTALL_URL": "https://mumo.chat/install/openclaw",
+    "TOOL_NAMING_NOTE": "\n\nIn OpenClaw's tool registry these surface as `mumo__create_deliberation`, `mumo__wait_for_round`, etc. (double underscore between server and tool name).",
+    "DESCRIPTION_TAIL": "Requires a mumo platform API key (mmo_live_*) registered with `openclaw mcp set mumo`."
+  },
+  "partials": {
+    "FRONTMATTER": "frontmatter.yml",
+    "SETUP_SECTION": "setup.md",
+    "FRAMING_PROMPTS_SECTION": "framing-prompts.md"
+  }
+}

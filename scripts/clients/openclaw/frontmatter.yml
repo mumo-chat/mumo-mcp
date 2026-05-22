@@ -1,0 +1,5 @@
+---
+name: mumo
+description: {{DESCRIPTION_PREFIX}} {{DESCRIPTION_TAIL}}
+metadata: {"openclaw": {"category": "agents", "tags": ["deliberation", "multi-model", "mcp", "decision-support"]}}
+---

@@ -1,84 +1,64 @@
-# mumo — Claude Code + Cowork plugin
+# mumo-mcp — canonical baseline for mumo MCP client packages
 
-**Multi-model responses + cross-model reactions. Want more rounds? Context carries automatically. Stop when you have what you need.**
+This repo is the **source of truth** for mumo's MCP client SKILL.md content. It is not a client package — no end user installs from here directly. Per-client packages live in sibling repos (see below), and each is rendered from this baseline by the build script in `scripts/`.
 
-Claude, GPT, Gemini, Grok, Qwen, GLM, Kimi in parallel. For contested decisions — architecture, plan review, pricing, strategy — where a single model might be confidently wrong.
+mumo runs multi-model deliberations across Claude, GPT, Gemini, Grok, Qwen, GLM, and Kimi in parallel. Use it for contested decisions — architecture, plan review, strategy — where a single model might be confidently wrong. The mumo MCP server lives at `https://mumo.chat/api/mcp` and exposes `create_deliberation`, `wait_for_round`, `append_round`, `get_session`, `list_sessions`, `list_models`, `get_credit`.
 
-Works in both Claude Code (developer audience) and Claude Cowork (knowledge-worker audience). Same plugin, same skill, different distribution marketplaces. For Cursor, see [`mumo-chat/mumo-cursor`](https://github.com/mumo-chat/mumo-cursor). For VS Code (GitHub Copilot), see [`mumo-chat/mumo-vscode`](https://github.com/mumo-chat/mumo-vscode).
+## Install (end users)
 
-## When to use
+Pick the package for your host:
 
-Reach for mumo when:
+| Host | Install page | Repo |
+|---|---|---|
+| Claude Code | https://mumo.chat/install/claude-code | `mumo-chat/mumo-claude` |
+| Codex | https://mumo.chat/install/codex | `mumo-chat/mumo-codex` |
+| Cursor | https://mumo.chat/install/cursor | `mumo-chat/mumo-cursor` |
+| VS Code (Copilot) | https://mumo.chat/install/vs-code | `mumo-chat/mumo-vscode` |
+| Hermes Agent | https://mumo.chat/install/hermes | `mumo-chat/mumo-hermes` |
+| OpenClaw | https://mumo.chat/install/openclaw | `mumo-chat/mumo-openclaw` |
 
-- **Architecture and design reviews** — "Postgres or MongoDB for our event store?" "Is this migration safe under concurrent writes?"
-- **Plan and pre-launch pressure tests** — "What would we regret 6 months in?" "Where's the biggest risk in this spec?"
-- **Contested product or pricing decisions** — "Should this feature be paid or free?" "Which of these positionings actually converts?"
-- **Strategy with real cost** — anywhere a confidently-wrong single model could push a team in the wrong direction for a week.
+API keys: sign up at https://mumo.chat and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`).
 
-The bundled skill auto-triggers on this category and stays quiet on factual lookups, routine refactoring, and code generation from a clear spec.
-
-## What's in the box
-
-- **MCP server** — `https://mumo.chat/api/mcp`, seven tools: `create_deliberation`, `wait_for_round`, `append_round`, `get_session`, `list_sessions`, `list_models`, `get_credit`
-- **Auto-triggering skill** — `skills/mumo/SKILL.md` tells the agent *when* to reach for the panel so you don't have to
-
-## Install — Claude Code
-
-Inside Claude Code:
+## Repo contents
 
 ```
-/plugin marketplace add anthropics/claude-plugins-official
-/plugin install mumo
+skills/mumo/
+├── SKILL.template.md       # tokenized baseline (the source of truth)
+├── playbooks/              # shared cognitive-shape playbooks
+└── references/             # shared reference docs (claim maps, snippets, recap, etc.)
+scripts/
+├── build-skill.js          # renderer: template + per-client overlay -> client SKILL.md
+├── README.md               # how the build system works
+└── clients/                # per-client configs + Setup/Frontmatter partials
 ```
 
-## Install — Claude Cowork
+The template uses `{{TOKEN}}` markers for per-client substitution points (application name, moderator example, install URL, tool-naming registry note, etc.). Each `scripts/clients/<client>.json` fills them in.
 
-Open Claude Desktop → **Cowork** tab → **Customize** → **Browse plugins** → search for `mumo` → **Install**. Or browse the full catalog at [claude.com/plugins](https://claude.com/plugins/).
+## Building
 
-> **Note:** Claude Code and Cowork have separate plugin panels backed by different marketplaces. Installing in one surface does **not** auto-install in the other — install in each separately.
+```bash
+node scripts/build-skill.js                      # render to all six sibling client repos
+node scripts/build-skill.js --target <client>    # render one
+node scripts/build-skill.js --verify-all         # check for drift across all six (use in CI)
+```
 
-## Install — VS Code (GitHub Copilot)
+See `scripts/README.md` for details (token reference, adding a new client, etc.).
 
-Install the [**mumo** extension](https://marketplace.visualstudio.com/items?itemName=mumo.mumo-vscode) from the Visual Studio Marketplace. It registers the MCP server natively and stores your key in VS Code's `SecretStorage` — no `MUMO_API_KEY` env-var required.
+## Editing
 
-For the full story and manual-install alternatives, see [`mumo-chat/mumo-vscode`](https://github.com/mumo-chat/mumo-vscode).
+- **Shared kernel changes** → edit `skills/mumo/SKILL.template.md`. Re-render to propagate.
+- **Per-client overlay changes** (`## Setup` body, frontmatter, application name, moderator example, install URL, tool-naming note) → edit `scripts/clients/<client>/` partials or `scripts/clients/<client>.json` tokens. Re-render.
+- **Shared playbooks / references** → edit `skills/mumo/playbooks/` or `skills/mumo/references/`. Currently propagated manually; build-system handling is a follow-up.
 
-The auto-triggering skill from this repo is not bundled in the VS Code extension — Copilot's agent mode routes to the MCP server organically when you mention mumo or ask for a panel. For the explicit skill experience, use Claude Code or Cowork.
+## Architecture
 
-## API key setup
-
-The plugin prompts for your mumo API key at install time and stores it securely in your system keychain.
-
-1. Sign up at https://mumo.chat and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`)
-2. Paste it when the plugin prompts you during install/enable
-
-If you need to update the key later, reinstall or reconfigure the plugin. For manual or dev setups, you can also export `MUMO_API_KEY` as an environment variable.
-
-## Using the panel
-
-Invoke the skill explicitly if the agent doesn't reach for it on its own:
-
-- "Run this by a mumo panel"
-- "Get me a second opinion from mumo on…"
-- "Ask mumo about…"
-
-### Try it first
-
-Ask Claude Code or Cowork something the panel will want to engage with:
-
-> Postgres or MongoDB for our event store given 50k events/day, a Postgres-experienced team, and a 3-month runway? What would we regret 6 months in?
-
-The first round returns each model's prose plus a cross-model claim map showing where the panel agrees and where it splits. You can stop there, or `append_round` with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT) — moderator attention on what mattered and why.
-
-See [mumo.chat/install](https://mumo.chat/install) for setup and [mumo.chat/docs/mcp](https://mumo.chat/docs/mcp) for the tool reference. The canonical skill lives in [`skills/mumo/SKILL.md`](skills/mumo/SKILL.md) — that's what Claude Code loads.
+The shared-sections + per-client-overlay model is documented in [`docs/MCP_CLIENTS.md`](https://github.com/mumo-chat/mumo/blob/main/docs/MCP_CLIENTS.md) in the main mumo repo. The 2026-05-20 audit at [`docs/audits/2026-05-20-mcp-skill-delta.md`](https://github.com/mumo-chat/mumo/blob/main/docs/audits/2026-05-20-mcp-skill-delta.md) enumerates exactly which sections are shared vs. per-client.
 
 ## Links
 
 - Product — https://mumo.chat
 - MCP reference — https://mumo.chat/docs/mcp
 - REST API — https://mumo.chat/docs/api
-- Cursor plugin — https://github.com/mumo-chat/mumo-cursor
-- VS Code extension — https://github.com/mumo-chat/mumo-vscode
 - Issues — https://github.com/mumo-chat/mumo-mcp/issues
 
 ## License

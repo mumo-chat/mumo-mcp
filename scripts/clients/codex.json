@@ -1,0 +1,16 @@
+{
+  "client": "codex",
+  "display_name": "Codex",
+  "target": "../mumo-codex/plugins/mumo/skills/mumo/SKILL.md",
+  "tokens": {
+    "APPLICATION_NAME": "\"Codex\"",
+    "MODERATOR_EXAMPLE": "the model Codex is currently running as — GPT, Claude, or the configured backbone",
+    "INSTALL_URL": "https://mumo.chat/install/codex",
+    "TOOL_NAMING_NOTE": "",
+    "DESCRIPTION_TAIL": "Requires a mumo platform API key exported as MUMO_API_KEY."
+  },
+  "partials": {
+    "FRONTMATTER": "frontmatter.yml",
+    "SETUP_SECTION": "setup.md"
+  }
+}

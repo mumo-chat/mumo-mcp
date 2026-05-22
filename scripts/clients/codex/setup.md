@@ -1,0 +1,3 @@
+The mumo MCP server is bundled with this plugin (`.mcp.json` at the plugin root). It uses HTTP transport against `https://mumo.chat/api/mcp` and reads `MUMO_API_KEY` from the environment.
+
+If tools return auth errors, the user needs a key. Direct them to https://mumo.chat/settings/api-keys (keys start with `mmo_live_`). On macOS they should set it via `launchctl setenv MUMO_API_KEY mmo_live_...` so the Codex IDE extension launched from Finder/Dock inherits it (GUI apps don't read shell profiles). For terminal-only Codex CLI use, `export MUMO_API_KEY=mmo_live_...` in their shell is enough. Either way, **restart Codex** so the env var propagates to the MCP server.
