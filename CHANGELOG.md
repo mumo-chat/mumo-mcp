@@ -2,7 +2,7 @@
 
 ## 0.4.0 — 2026-06-19
 
-Baseline content release for the coordinated 0.4.0 client alignment (Trello #245). MCP tool surface unchanged, so `server.json` stays at 0.2.0.
+Baseline content release for the coordinated 0.4.0 client alignment. MCP tool surface unchanged, so `server.json` stays at 0.2.0.
 
 - `SKILL.template.md`: added the "Prompt voice" section (first-person operator framing), the author-bias counter in "When to use," and a `claim_map_url` surfacing line in "After each round."
 - `scripts/clients/_shared.json`: `DESCRIPTION_PREFIX` dropped the "contested" gate; now leads with pre-implementation review (auth, security, tokens, payments, data exposure, migrations).
