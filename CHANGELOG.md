@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 — 2026-06-19
+
+Baseline content release for the coordinated 0.4.0 client alignment (Trello #245). MCP tool surface unchanged, so `server.json` stays at 0.2.0.
+
+- `SKILL.template.md`: added the "Prompt voice" section (first-person operator framing), the author-bias counter in "When to use," and a `claim_map_url` surfacing line in "After each round."
+- `scripts/clients/_shared.json`: `DESCRIPTION_PREFIX` dropped the "contested" gate; now leads with pre-implementation review (auth, security, tokens, payments, data exposure, migrations).
+- `scripts/clients/claude-code/frontmatter.yml`: `when_to_use` rewritten to match; skip rule now keys on "no ambiguity over the correctness of your approach."
+- `scripts/clients/hermes/frontmatter.yml`: version 0.1.5 → 0.4.0 (was lagging the shipped 0.1.6).
+- Rendered to all six clients via `build-skill.js`.
+
 ## 0.2.2 — 2026-05-05
 
 Removed `agents/mumo-moderator.md`. The agent positioned itself as the moderator role, but moderation is exactly what should stay with the primary agent — it owns the conversational context, the user's intent, and the cross-round steering decisions. A subagent that ran a "complete brief" panel was a thin operational helper at best, and the framing risked the primary agent over-delegating.
