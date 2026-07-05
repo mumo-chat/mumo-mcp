@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0 — 2026-07-04
+
+Reaction-visibility model documented + per-round Takeaway. MCP tool surface unchanged, so `server.json` stays at 0.2.0.
+
+- `SKILL.template.md`: new "Reactions are in the ledger, responses are on the record" section — participants never see each other's reactions; each model weaves its own prior reactions into its next prose; the claim map is the moderator's privileged preview, and moderator snippets are the one path that puts ledger content directly in front of the panel. Basic-loop step 5 and the claim-map section link into it.
+- `SKILL.template.md`: pacing note in "When to continue" — positions develop across rounds; a reaction gets woven into the next round's prose, which draws reactions of its own a round later.
+- Takeaway: the `takeaway` flag (create + append) generates `round_takeaway` (`bottom_line` + `items[]`), the per-round summary artifact. New `references/takeaway.md` documents the flag, artifact shape, and cost; kernel sections and links updated (replaces `references/recap.md`).
+- `references/claim-maps.md` + `references/snippets.md`: visibility notes matching the ledger/record model.
+- Rendered to all six clients via `build-skill.js`.
+
 ## 0.4.0 — 2026-06-19
 
 Baseline content release for the coordinated 0.4.0 client alignment. MCP tool surface unchanged, so `server.json` stays at 0.2.0.

@@ -1,7 +1,7 @@
 ---
 name: mumo
 description: {{DESCRIPTION_PREFIX}}
-version: 0.4.0
+version: 0.5.0
 author: mumo
 license: MIT
 platforms: [linux, macos, windows]

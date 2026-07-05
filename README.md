@@ -25,7 +25,7 @@ API keys: sign up at https://mumo.chat and create a platform key at [Settings �
 skills/mumo/
 ├── SKILL.template.md       # tokenized baseline (the source of truth)
 ├── playbooks/              # shared cognitive-shape playbooks
-└── references/             # shared reference docs (claim maps, snippets, recap, etc.)
+└── references/             # shared reference docs (claim maps, snippets, takeaway, etc.)
 scripts/
 ├── build-skill.js          # renderer: template + per-client overlay -> client SKILL.md
 ├── README.md               # how the build system works
