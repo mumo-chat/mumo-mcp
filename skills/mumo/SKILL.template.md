@@ -197,6 +197,7 @@ The panel does not need to converge. Sometimes the right output is a clear map o
 | Wait for model responses | `wait_for_round` |
 | Add a follow-up round | `append_round` |
 | Recover/read full state | `get_session` |
+| Share a session at a public link | `share_session` |
 | Find prior sessions | `list_sessions` |
 | Confirm model IDs | `list_models` |
 | Check wallet balance | `get_credit` |{{TOOL_NAMING_NOTE}}
