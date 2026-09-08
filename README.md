@@ -2,7 +2,7 @@
 
 [![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp) [![mumo on Smithery](https://smithery.ai/badge/mumo-chat/mumo)](https://smithery.ai/servers/mumo-chat/mumo)
 
-Ask a panel of frontier models from different labs the same question in parallel and get every model's full answer plus a **claim map** of where they agree and disagree. Built for contested decisions — architecture, plan and spec review, strategy, pre-launch red-teaming — where a single model might be confidently wrong. A second opinion with the disagreement kept intact.
+Your agent sends a question to models from different labs — Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more — and gets back their full responses plus **typed cross-model reactions**. The participating models react to each other directly and explain, in their own words, what they agree with, challenge, or want to explore further. Built for architecture, plan/spec review, strategy, and pre-launch pressure tests. Free monthly credit; API key required.
 
 The server is remote. There is nothing to run locally.
 

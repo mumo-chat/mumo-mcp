@@ -1,8 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.6.0 — 2026-09-08
 
-README and registry descriptor only — skill content unchanged; no client re-render.
+Coordinated client release: `share_session` reaches every client, `wait_for_round` is taught in its one-id form, and the description carries the current positioning (typed cross-model reactions, current model families). Rendered to all six clients via `build-skill.js`; `references/operating-notes.md` re-synced everywhere.
+
+- `SKILL.template.md`: intro names the labs (Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more) and what comes back — full responses plus typed cross-model reactions in each model's own words.
+- `SKILL.template.md`: the basic loop, verification, and recovery sections now keep only `session_id`. `wait_for_round(session_id)` resolves to the round in flight on its own (a session has at most one); `round_id` is for reading an earlier round. The user-preference example no longer names a specific model version.
+- `scripts/clients/_shared.json`: `DESCRIPTION_PREFIX` (every client's frontmatter description) updated to the current families and to name the typed reactions.
+- `scripts/clients/claude-code/frontmatter.yml`: `allowed-tools` gains `mcp__plugin_mumo_mumo__share_session`, so sharing no longer trips a permission prompt mid-deliberation.
+- `scripts/clients/hermes/frontmatter.yml`: `version: 0.6.0`.
+- `references/operating-notes.md`: the `/progress for diagnostic polling` section propagated to the five clients that had drifted.
+- `README.md` intro rewritten to the approved directory description; Smithery badge beside the Glama badge.
+- `server.json` description shortened to the registry's 100-character cap and reworded to the current positioning.
+
+Earlier in the same cycle (unreleased at the time):
 
 - `README.md` rewritten install-first: the remote URL and a generic `mcp.json` block up top, the per-host install table (now including Grok Bot), the full eight-tool table, the loop, and the Glama score badge. The build-system material moves below the fold under "This repo: the client baseline".
 - `server.json` rewritten in the Official MCP Registry `server.json` shape (schema 2025-12-11: `remotes[]` with the bearer header and `MUMO_API_KEY` variable, `repository`, `websiteUrl`) and bumped to 1.0.0 — the version the server reports in `initialize`. Replaces the tool-list descriptor; the tool list now lives in the README and the server's own manifest. Registry republish is a separate step.

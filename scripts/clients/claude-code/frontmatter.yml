@@ -8,6 +8,7 @@ allowed-tools:
   - mcp__plugin_mumo_mumo__get_session
   - mcp__plugin_mumo_mumo__list_sessions
   - mcp__plugin_mumo_mumo__list_models
+  - mcp__plugin_mumo_mumo__share_session
   - mcp__plugin_mumo_mumo__get_credit
 argument-hint: "[question or topic for the panel]"
 when_to_use: |
