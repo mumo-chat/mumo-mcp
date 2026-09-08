@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `scripts/clients/hermes/setup.md` + `frontmatter.yml` (Hermes skill → 0.6.1): "installed from HermesHub" → `hermes skills install mumo-hermes`. There is no HermesHub registry; the Hermes Skills Hub resolves to ClawHub, where the Hermes skill is now published under the `mumo-hermes` slug (the bare `mumo` slug is the OpenClaw skill). Hermes-only re-render; the other five clients stay at 0.6.0.
+
 ## 0.6.0 — 2026-09-08
 
 Registry descriptor `server.json` → 1.1.0 (matches the server's `initialize` version once the `dataset_consent` wire field ships; registry versions are immutable, so the reworded description needed a new number anyway). Republish with `mcp-publisher publish` after that server release deploys.
