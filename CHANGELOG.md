@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- `scripts/clients/hermes/setup.md` + `frontmatter.yml` (Hermes skill → 0.6.1): "installed from HermesHub" → `hermes skills install mumo-hermes`. There is no HermesHub registry; the Hermes Skills Hub resolves to ClawHub, where the Hermes skill is now published under the `mumo-hermes` slug (the bare `mumo` slug is the OpenClaw skill). Hermes-only re-render; the other five clients stay at 0.6.0.
+- `scripts/clients/hermes/setup.md` + `frontmatter.yml` (Hermes skill → 0.6.2): "installed from HermesHub" → `hermes skills install clawhub/mumo-hermes`. There is no HermesHub registry; the Hermes Skills Hub federates ClawHub, where the Hermes skill is now published under the `mumo-hermes` slug (the bare `mumo` slug is the OpenClaw skill). 0.6.1 was the same text with the bare slug; 0.6.2 restores the registry display name and uses the `clawhub/` install form the Hermes catalog generates. Hermes-only re-render; the other five clients stay at 0.6.0. ClawHub publishes MUST pass `--name` — the CLI resets the display name on every publish that omits it.
 
 ## 0.6.0 — 2026-09-08
 
