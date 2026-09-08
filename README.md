@@ -1,6 +1,6 @@
 # mumo — multi-model deliberation over MCP
 
-[![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp)
+[![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp) [![mumo on Smithery](https://smithery.ai/badge/mumo-chat/mumo)](https://smithery.ai/servers/mumo-chat/mumo)
 
 Ask a panel of frontier models from different labs the same question in parallel and get every model's full answer plus a **claim map** of where they agree and disagree. Built for contested decisions — architecture, plan and spec review, strategy, pre-launch red-teaming — where a single model might be confidently wrong. A second opinion with the disagreement kept intact.
 
