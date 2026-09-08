@@ -1,14 +1,34 @@
 {
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "chat.mumo/mcp",
-  "version": "0.2.0",
-  "description": "mumo multi-model deliberation — structured panel discussions across frontier AI models with claim-level reactions and cross-model claim maps",
-  "tools": [
-    "create_deliberation",
-    "wait_for_round",
-    "get_session",
-    "append_round",
-    "list_sessions",
-    "list_models",
-    "get_credit"
+  "version": "1.0.0",
+  "title": "mumo",
+  "description": "Consult a multi-model panel on contested decisions via MCP: architecture, plan review, strategy.",
+  "websiteUrl": "https://mumo.chat/install",
+  "repository": {
+    "url": "https://github.com/mumo-chat/mumo-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mumo.chat/api/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "mumo platform API key as a bearer token. Create one at https://mumo.chat/settings/api-keys (keys begin with mmo_live_).",
+          "value": "Bearer {MUMO_API_KEY}",
+          "isRequired": true,
+          "isSecret": true,
+          "variables": {
+            "MUMO_API_KEY": {
+              "description": "mumo platform API key (mmo_live_…)",
+              "isRequired": true,
+              "isSecret": true
+            }
+          }
+        }
+      ]
+    }
   ]
 }

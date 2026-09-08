@@ -1,25 +1,86 @@
-# mumo-mcp — canonical baseline for mumo MCP client packages
+# mumo — multi-model deliberation over MCP
 
-This repo is the **source of truth** for mumo's MCP client SKILL.md content. It is not a client package — no end user installs from here directly. Per-client packages live in sibling repos (see below), and each is rendered from this baseline by the build script in `scripts/`.
+[![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp)
 
-mumo runs multi-model deliberations across Claude, GPT, Gemini, Grok, Qwen, GLM, and Kimi in parallel. Use it for contested decisions — architecture, plan review, strategy — where a single model might be confidently wrong. The mumo MCP server lives at `https://mumo.chat/api/mcp` and exposes `create_deliberation`, `wait_for_round`, `append_round`, `get_session`, `list_sessions`, `list_models`, `get_credit`.
+Ask a panel of frontier models from different labs the same question in parallel and get every model's full answer plus a **claim map** of where they agree and disagree. Built for contested decisions — architecture, plan and spec review, strategy, pre-launch red-teaming — where a single model might be confidently wrong. A second opinion with the disagreement kept intact.
 
-## Install (end users)
+The server is remote. There is nothing to run locally.
 
-Pick the package for your host:
+```
+https://mumo.chat/api/mcp
+```
 
-| Host | Install page | Repo |
-|---|---|---|
-| Claude Code | https://mumo.chat/install/claude-code | `mumo-chat/mumo-claude` |
-| Codex | https://mumo.chat/install/codex | `mumo-chat/mumo-codex` |
-| Cursor | https://mumo.chat/install/cursor | `mumo-chat/mumo-cursor` |
-| VS Code (Copilot) | https://mumo.chat/install/vs-code | `mumo-chat/mumo-vscode` |
-| Hermes Agent | https://mumo.chat/install/hermes | `mumo-chat/mumo-hermes` |
-| OpenClaw | https://mumo.chat/install/openclaw | `mumo-chat/mumo-openclaw` |
+## Install
 
-API keys: sign up at https://mumo.chat and create a platform key at [Settings → API Keys](https://mumo.chat/settings/api-keys) (keys start with `mmo_live_`).
+**One-click, per host** — each page walks through the key and the client's own install flow:
 
-## Repo contents
+| Host | Install page |
+|---|---|
+| Claude Code | https://mumo.chat/install/claude-code |
+| Cursor | https://mumo.chat/install/cursor |
+| Codex | https://mumo.chat/install/codex |
+| VS Code (Copilot) | https://mumo.chat/install/vs-code |
+| Grok Bot | https://mumo.chat/install/grok-bot |
+| Hermes Agent | https://mumo.chat/install/hermes |
+| OpenClaw | https://mumo.chat/install/openclaw |
+| Anything else | https://mumo.chat/install |
+
+**Any MCP client** that supports Streamable HTTP with a custom header:
+
+```json
+{
+  "mcpServers": {
+    "mumo": {
+      "url": "https://mumo.chat/api/mcp",
+      "headers": {
+        "Authorization": "Bearer mmo_live_YOUR_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+Get a key at [mumo.chat/settings/api-keys](https://mumo.chat/settings/api-keys) (sign-in required; keys start with `mmo_live_`). `initialize` and `tools/list` work without a key, so your client can inspect the tools before you create one; tool calls need the header.
+
+## Tools
+
+| Tool | What it does |
+|---|---|
+| `create_deliberation` | Start a deliberation. Returns an ack immediately (`session_id` + `round_id`); the models run in the background. |
+| `wait_for_round` | Block on cheap progress polling until the round is done, then return every model's response and the claim map. |
+| `append_round` | Add a follow-up round, optionally steered with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT). |
+| `get_session` | Read full session state: rounds, responses, snippets, claim maps. |
+| `share_session` | Share a session at its public URL; returns the page plus `.md` and `.brief.md` machine twins. |
+| `list_sessions` | List your prior sessions. |
+| `list_models` | List the models available to your account, with pricing. |
+| `get_credit` | Read your credit balance. |
+
+Full reference, request and response shapes, and per-client notes: https://mumo.chat/docs/mcp. Machine-readable descriptors: [`/.well-known/mcp.json`](https://mumo.chat/.well-known/mcp.json) (manifest) and [`/api/mcp/server-card`](https://mumo.chat/api/mcp/server-card) (MCP Server Card). Registry name: `chat.mumo/mcp`.
+
+## The loop
+
+1. `create_deliberation` with the question, written in the operator's first person ("I'm deciding whether to…").
+2. `wait_for_round` — panels take 15–120 s; a long wait is normal.
+3. Read the claim map before the prose. Steer with `append_round` and snippets, or stop.
+
+The panel is advisory. Read the disagreement; don't defer to whichever side has more votes.
+
+---
+
+## This repo: the client baseline
+
+Beyond the server, mumo ships a skill for each host that teaches the agent when to convene a panel and how to read one. This repo is the **source of truth** for that skill: one tokenized `SKILL.template.md` plus a per-client overlay, rendered into each sibling client repo by the build script in `scripts/`. Never edit a client's `SKILL.md` directly — edit here and re-render.
+
+| Client repo | Renders to |
+|---|---|
+| `mumo-chat/mumo-claude` | Claude Code plugin |
+| `mumo-chat/mumo-cursor` | Cursor plugin |
+| `mumo-chat/mumo-codex` | Codex plugin |
+| `mumo-chat/mumo-vscode` | VS Code extension |
+| `mumo-chat/mumo-hermes` | Hermes Agent skill |
+| `mumo-chat/mumo-openclaw` | OpenClaw skill |
+
+### Contents
 
 ```
 skills/mumo/
@@ -30,11 +91,12 @@ scripts/
 ├── build-skill.js          # renderer: template + per-client overlay -> client SKILL.md
 ├── README.md               # how the build system works
 └── clients/                # per-client configs + Setup/Frontmatter partials
+server.json                 # Official MCP Registry descriptor (chat.mumo/mcp)
 ```
 
 The template uses `{{TOKEN}}` markers for per-client substitution points (application name, moderator example, install URL, tool-naming registry note, etc.). Each `scripts/clients/<client>.json` fills them in.
 
-## Building
+### Building
 
 ```bash
 node scripts/build-skill.js                      # render to all six sibling client repos
@@ -44,21 +106,22 @@ node scripts/build-skill.js --verify-all         # check for drift across all si
 
 See `scripts/README.md` for details (token reference, adding a new client, etc.).
 
-## Editing
+### Editing
 
 - **Shared kernel changes** → edit `skills/mumo/SKILL.template.md`. Re-render to propagate.
 - **Per-client overlay changes** (`## Setup` body, frontmatter, application name, moderator example, install URL, tool-naming note) → edit `scripts/clients/<client>/` partials or `scripts/clients/<client>.json` tokens. Re-render.
 - **Shared playbooks / references** → edit `skills/mumo/playbooks/` or `skills/mumo/references/`. Currently propagated manually; build-system handling is a follow-up.
 
-## Architecture
+### Architecture
 
 The shared-sections + per-client-overlay model is documented in [`docs/MCP_CLIENTS.md`](https://github.com/mumo-chat/mumo/blob/main/docs/MCP_CLIENTS.md) in the main mumo repo. The 2026-05-20 audit at [`docs/audits/2026-05-20-mcp-skill-delta.md`](https://github.com/mumo-chat/mumo/blob/main/docs/audits/2026-05-20-mcp-skill-delta.md) enumerates exactly which sections are shared vs. per-client.
 
 ## Links
 
 - Product — https://mumo.chat
+- For agents — https://mumo.chat/for-agents
 - MCP reference — https://mumo.chat/docs/mcp
-- REST API — https://mumo.chat/docs/api
+- REST API — https://mumo.chat/docs/api · OpenAPI — https://mumo.chat/openapi.json
 - Issues — https://github.com/mumo-chat/mumo-mcp/issues
 
 ## License

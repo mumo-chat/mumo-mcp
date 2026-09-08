@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+README and registry descriptor only — skill content unchanged; no client re-render.
+
+- `README.md` rewritten install-first: the remote URL and a generic `mcp.json` block up top, the per-host install table (now including Grok Bot), the full eight-tool table, the loop, and the Glama score badge. The build-system material moves below the fold under "This repo: the client baseline".
+- `server.json` rewritten in the Official MCP Registry `server.json` shape (schema 2025-12-11: `remotes[]` with the bearer header and `MUMO_API_KEY` variable, `repository`, `websiteUrl`) and bumped to 1.0.0 — the version the server reports in `initialize`. Replaces the tool-list descriptor; the tool list now lives in the README and the server's own manifest. Registry republish is a separate step.
+
 ## 0.5.0 — 2026-07-04
 
 Reaction-visibility model documented + per-round Takeaway. MCP tool surface unchanged, so `server.json` stays at 0.2.0.
