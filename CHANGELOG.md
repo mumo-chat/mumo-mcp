@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `scripts/clients/hermes/setup.md` + `frontmatter.yml` (Hermes skill → 0.6.3) and `scripts/clients/openclaw/setup.md`: credential-hygiene guidance. Both clients' MCP config now references `${MUMO_API_KEY}` instead of carrying a literal-key placeholder, resolved from `~/.hermes/.env` and `~/.openclaw/.env` respectively. Verified against the shipped builds — Hermes v0.12.0 resolves the reference and returns all eight tools over a live connection; OpenClaw 2026.5.4 resolves it and names a missing variable in a startup config warning. The two setup blocks describe each host's own failure signal and are deliberately NOT symmetric: only Hermes was observed sending an empty credential and taking a 401.
+- `scripts/clients/openclaw/setup.md`: OpenClaw's shipped CLI has no `mcp doctor`, no `mcp probe`, and no `skills install --global` — `docs.openclaw.ai` documents all three, the 2026.5.4 release has none of them. Guidance is written against the release, not the docs.
+
 - `scripts/clients/hermes/setup.md` + `frontmatter.yml` (Hermes skill → 0.6.2): "installed from HermesHub" → `hermes skills install clawhub/mumo-hermes`. There is no HermesHub registry; the Hermes Skills Hub federates ClawHub, where the Hermes skill is now published under the `mumo-hermes` slug (the bare `mumo` slug is the OpenClaw skill). 0.6.1 was the same text with the bare slug; 0.6.2 restores the registry display name and uses the `clawhub/` install form the Hermes catalog generates. Hermes-only re-render; the other five clients stay at 0.6.0. ClawHub publishes MUST pass `--name` — the CLI resets the display name on every publish that omits it.
 
 ## 0.6.0 — 2026-09-08
