@@ -1,6 +1,6 @@
 # mumo — multi-model deliberation over MCP
 
-[![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp) [![mumo on Smithery](https://smithery.ai/badge/mumo-chat/mumo)](https://smithery.ai/servers/mumo-chat/mumo)
+[![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp) [![LightNow capabilities](https://lightnow.ai/badge/chat.mumo/mcp)](https://lightnow.ai/servers/chat.mumo/mcp)
 
 Your agent sends a question to models from different labs — Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more — and gets back their full responses plus **typed cross-model reactions**. The participating models react to each other directly and explain, in their own words, what they agree with, challenge, or want to explore further. Built for architecture, plan/spec review, strategy, and pre-launch pressure tests. Free monthly credit; API key required.
 
