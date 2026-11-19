@@ -1,6 +1,19 @@
 # Changelog
 
-## Unreleased
+## 0.7.0 — 2026-11-19
+
+Registry descriptor `server.json` → 1.2.0, matching the server's `initialize` version now that `ask_a_model` is live.
+
+Coordinated client release: a new tool, `ask_a_model`, reaches every client, and the per-round link is taught under its new name, `web_url`. Rendered to all six clients via `build-skill.js`.
+
+- `SKILL.template.md`: new section "One model instead of a panel". `ask_a_model` puts a question to one named model and returns one answer, with no cross-model reactions, claim map or Takeaway. The section says when to use it, when to use `create_deliberation` instead, and how to move an exchange in front of a panel (pass it as `reference`).
+- `SKILL.template.md`: the tools table lists `ask_a_model`, and `create_deliberation` is described as starting a panel of 2–3 models.
+- `SKILL.template.md`: "After each round" tells the agent to surface the round's `web_url`. `claim_map_url` still works and carries the same value; it is the deprecated name.
+- `scripts/clients/claude-code/frontmatter.yml`: `allowed-tools` gains `mcp__plugin_mumo_mumo__ask_a_model`, so asking one model does not trip a permission prompt.
+- `scripts/clients/hermes/frontmatter.yml`: `version: 0.7.0`.
+- `README.md`: the tools table lists `ask_a_model`.
+
+## 0.6.1 to 0.6.3 — 2026-09-09 (Hermes and OpenClaw only)
 
 - `scripts/clients/hermes/setup.md` + `frontmatter.yml` (Hermes skill → 0.6.3) and `scripts/clients/openclaw/setup.md`: credential-hygiene guidance. Both clients' MCP config now references `${MUMO_API_KEY}` instead of carrying a literal-key placeholder, resolved from `~/.hermes/.env` and `~/.openclaw/.env` respectively. Verified against the shipped builds — Hermes v0.12.0 resolves the reference and returns all eight tools over a live connection; OpenClaw 2026.5.4 resolves it and names a missing variable in a startup config warning. The two setup blocks describe each host's own failure signal and are deliberately NOT symmetric: only Hermes was observed sending an empty credential and taking a 401.
 - `scripts/clients/openclaw/setup.md`: OpenClaw's shipped CLI has no `mcp doctor`, no `mcp probe`, and no `skills install --global` — `docs.openclaw.ai` documents all three, the 2026.5.4 release has none of them. Guidance is written against the release, not the docs.

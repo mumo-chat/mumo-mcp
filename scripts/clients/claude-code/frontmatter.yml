@@ -3,6 +3,7 @@ name: mumo
 description: {{DESCRIPTION_PREFIX}} {{DESCRIPTION_TAIL}}
 allowed-tools:
   - mcp__plugin_mumo_mumo__create_deliberation
+  - mcp__plugin_mumo_mumo__ask_a_model
   - mcp__plugin_mumo_mumo__wait_for_round
   - mcp__plugin_mumo_mumo__append_round
   - mcp__plugin_mumo_mumo__get_session

@@ -46,7 +46,8 @@ Get a key at [mumo.chat/settings/api-keys](https://mumo.chat/settings/api-keys) 
 
 | Tool | What it does |
 |---|---|
-| `create_deliberation` | Start a deliberation. Returns an ack immediately (`session_id` + `round_id`); the models run in the background. |
+| `create_deliberation` | Start a deliberation with a panel of 2–3 models. Returns an ack immediately (`session_id` + `round_id`); the models run in the background. |
+| `ask_a_model` | Put a question to one model of your choice. Same ack; one answer, with no cross-model reactions or claim map. |
 | `wait_for_round` | Block on cheap progress polling until the round is done, then return every model's response and the claim map. |
 | `append_round` | Add a follow-up round, optionally steered with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT). |
 | `get_session` | Read full session state: rounds, responses, snippets, claim maps. |
