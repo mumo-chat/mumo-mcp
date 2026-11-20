@@ -2,7 +2,7 @@
 
 [![mumo MCP connector – tool definition quality and endpoint health on Glama](https://glama.ai/mcp/connectors/chat.mumo/mcp/badges/score.svg)](https://glama.ai/mcp/connectors/chat.mumo/mcp) [![mumo on Smithery](https://smithery.ai/badge/mumo-chat/mumo)](https://smithery.ai/servers/mumo-chat/mumo)
 
-Your agent sends a question to models from different labs — Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more — and gets back their full responses plus **typed cross-model reactions**. The participating models react to each other directly and explain, in their own words, what they agree with, challenge, or want to explore further. Built for architecture, plan/spec review, strategy, and pre-launch pressure tests. Free monthly credit; API key required.
+Your agent sends a question to models from different labs — Claude, GPT, Gemini, Grok, DeepSeek, Kimi, and more — and gets back their full responses plus **typed cross-model reactions**. The participating models react to each other directly and explain, in their own words, what they agree with, challenge, or want to explore further. Built for architecture, plan/spec review, strategy, and pre-launch pressure tests. Free monthly credit; an API key or a mumo sign-in is required for tool calls.
 
 The server is remote. There is nothing to run locally.
 
@@ -40,20 +40,20 @@ https://mumo.chat/api/mcp
 }
 ```
 
-Get a key at [mumo.chat/settings/api-keys](https://mumo.chat/settings/api-keys) (sign-in required; keys start with `mmo_live_`). `initialize` and `tools/list` work without a key, so your client can inspect the tools before you create one; tool calls need the header.
+Get a key at [mumo.chat/settings/api-keys](https://mumo.chat/settings/api-keys) (sign-in required; keys start with `mmo_live_`). `initialize` and `tools/list` work without a key, so your client can inspect the tools before you create one; tool calls at `/api/mcp` need the header.
 
 ## Tools
 
 | Tool | What it does |
 |---|---|
 | `create_deliberation` | Start a deliberation with a panel of 2–3 models. Returns an ack immediately (`session_id` + `round_id`); the models run in the background. |
-| `ask_a_model` | Put a question to one model of your choice. Same ack; one answer, with no cross-model reactions or claim map. |
-| `wait_for_round` | Block on cheap progress polling until the round is done, then return every model's response and the claim map. |
-| `append_round` | Add a follow-up round, optionally steered with typed snippets (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT). |
-| `get_session` | Read full session state: rounds, responses, snippets, claim maps. |
+| `ask_a_model` | Put a question to one model of your choice, by ID or family name. Same ack; one answer, with no cross-model reactions. |
+| `wait_for_round` | Block on cheap progress polling until the round is done, then return that round: the reacted-to claims in four groups (Contested, Open, Pivotal, Kept), then each model's response. |
+| `append_round` | Add a follow-up round, optionally steered with your own typed reactions (KEEP / EXPLORE / CHALLENGE / CORE / SHIFT), sent in the `snippets` parameter. |
+| `get_session` | Read the whole session: every round's grouped claims and responses. `detail: "compact"` shortens the responses. |
 | `share_session` | Share a session at its public URL; returns the page plus `.md` and `.brief.md` machine twins. |
 | `list_sessions` | List your prior sessions. |
-| `list_models` | List the models available to your account, with pricing. |
+| `list_models` | List models by what your plan can run, grouped by family, with pricing. |
 | `get_credit` | Read your credit balance. |
 
 Full reference, request and response shapes, and per-client notes: https://mumo.chat/docs/mcp. Machine-readable descriptors: [`/.well-known/mcp.json`](https://mumo.chat/.well-known/mcp.json) (manifest) and [`/api/mcp/server-card`](https://mumo.chat/api/mcp/server-card) (MCP Server Card). Registry name: `chat.mumo/mcp`.
@@ -62,7 +62,7 @@ Full reference, request and response shapes, and per-client notes: https://mumo.
 
 1. `create_deliberation` with the question, written in the operator's first person ("I'm deciding whether to…").
 2. `wait_for_round` — panels take 15–120 s; a long wait is normal.
-3. Read the claim map before the prose. Steer with `append_round` and snippets, or stop.
+3. Read the reactions before the prose and summarize the round for the user. If they want another round, steer it with `append_round` and your own reactions.
 
 The panel is advisory. Read the disagreement; don't defer to whichever side has more votes.
 
@@ -87,7 +87,7 @@ Beyond the server, mumo ships a skill for each host that teaches the agent when 
 skills/mumo/
 ├── SKILL.template.md       # tokenized baseline (the source of truth)
 ├── playbooks/              # shared cognitive-shape playbooks
-└── references/             # shared reference docs (claim maps, snippets, takeaway, etc.)
+└── references/             # shared reference docs (reading and writing reactions, takeaway, etc.)
 scripts/
 ├── build-skill.js          # renderer: template + per-client overlay -> client SKILL.md
 ├── README.md               # how the build system works

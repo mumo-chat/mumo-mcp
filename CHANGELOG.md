@@ -1,5 +1,31 @@
 # Changelog
 
+## 0.8.0 — 2026-11-20
+
+Registry descriptor `server.json` → 1.3.0, matching the server's `initialize` version. It now carries the mumo icon (`icons`, three PNG sizes), the same list the server sends in `initialize`, and a second remote: the sign-in address `https://mumo.chat/api/mcp/oauth`, which takes no key (the app runs OAuth from that address's 401). Publish to the registry only after sign-in is switched on in production.
+
+Coordinated client release: the skill teaches the read tools' new layout and choosing a model by family name. Rendered to all six clients via `build-skill.js`.
+
+- `SKILL.template.md`: "Reading the reactions" (was "Reading the claim map") gains the four groups the read tools print (Contested, Open, Pivotal, Kept), which reaction puts a claim in each, and what to do with each. It also says the groups show how models reacted, not whether a claim was checked.
+- `SKILL.template.md`: the basic loop says `wait_for_round` returns only its round, in reading order: status line, grouped reactions, Takeaway, responses.
+- `SKILL.template.md`: a family name (`"claude"`, `"gpt"`, `"gemini"`, …) works as a model on `create_deliberation` and `ask_a_model`. The ack names the model it resolved to. `list_models` is for a specific model or to see what the plan includes.
+- `SKILL.template.md`: when the ack notes a model from the agent's own lab, the agent tells the user.
+- `SKILL.template.md`: `detail: "compact"` on `wait_for_round` and `get_session` for long sessions.
+- The skill says "reactions" where it said "claim map", matching the server's text: the template (section "Reading the reactions"), the references, the playbooks and the README. The `claim_map` field name is unchanged.
+- The moderator's snippets are called "your reactions" in prose (template section "Your reactions"; its table column is "Meaning"). The parameter is still `snippets`, and the skill says so where the agent has to type it.
+- Two reference files renamed: `references/claim-maps.md` → `references/reading-reactions.md`, and `references/snippets.md` → `references/writing-reactions.md`. Each client repo drops the old file and gains the new one.
+- The loop puts the user between rounds: summarize each finished round for them, suggest another when warranted, and call `append_round` only once they agree. `append_round` always needs a `prompt`.
+- Waiting and retrying: wait with both IDs from the acknowledgement, and reuse the returned `round_id` after a timeout. An identical `append_round` within 24 hours returns the first acknowledgement, so a failed round is retried with a reworded prompt, after telling the user.
+- A Takeaway is requested only when the user asks for one. It appears as a Takeaway section in the round text.
+- KEEP from several models is agreement, not verification. CORE means the reacting model believes the point is a crux.
+- The Confidence scores section is removed: the tools do not print those fields.
+- `references/synthesis.md`: point the user at the private `web_url` for their own review; offer `share_session` only for a link meant for someone else.
+- `references/operating-notes.md`: when to repeat a call exactly and when to reword it; `/progress` needs an API key, and a round is finished when either status field says so.
+- `references/model-selection.md`: family names; `list_models` sorted by what the plan can run; the finished round's cost and balance line.
+- `references/reading-reactions.md`: the four groups.
+- `scripts/clients/hermes/frontmatter.yml`: `version: 0.8.0`.
+- `README.md`: the tools table describes the new `wait_for_round`, `get_session` and `list_models` output.
+
 ## 0.7.0 — 2026-11-19
 
 Registry descriptor `server.json` → 1.2.0, matching the server's `initialize` version now that `ask_a_model` is live.
