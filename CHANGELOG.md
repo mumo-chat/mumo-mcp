@@ -1,5 +1,13 @@
 # Changelog
 
+## Registry descriptor 1.4.0 — 2026-11-21
+
+Registry descriptor `server.json` → 1.4.0, matching the server's `initialize` version. Publish to the registry only after the server change is live.
+
+- Tool results are text only. `wait_for_round` no longer sends a structured result: the second line of its text is `Action: <value>`, with the same five values as before, and the third names the session and round. Refusals start with `Error: <code>`.
+- If `wait_for_round` errors in a session that was open during the change, reload the mumo connection so the client fetches the tool list again.
+- The skill text that teaches this ships with the next client release.
+
 ## 0.8.0 — 2026-11-20
 
 Registry descriptor `server.json` → 1.3.0, matching the server's `initialize` version. It now carries the mumo icon (`icons`, three PNG sizes), the same list the server sends in `initialize`, and a second remote: the sign-in address `https://mumo.chat/api/mcp/oauth`, which takes no key (the app runs OAuth from that address's 401). Publish to the registry only after sign-in is switched on in production.
