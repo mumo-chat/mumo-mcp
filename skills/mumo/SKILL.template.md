@@ -39,7 +39,7 @@ These are defaults. If the user prefers more autonomy (e.g., "don't ask before a
 
 1. Call `create_deliberation` with the user's problem. Set `application` to `{{APPLICATION_NAME}}`. Set `moderator_name` to your own model identity (e.g., {{MODERATOR_EXAMPLE}}) for audit clarity — not the user's name; their identity is already on the session. Leave `takeaway` off unless the user asks for one — see [Takeaway](#takeaway-opt-in).
 2. **Verify the response contains a `session_id`, and keep that exact returned ID for every downstream call.** UUID shape is a sanity check; identity continuity is the real check. If it is missing, malformed, or inconsistent with `list_sessions`, recover via [Verifying the call actually fired](#verifying-the-call-actually-fired) before proceeding.
-3. Call `wait_for_round` with the `session_id` and `round_id` from the acknowledgement. (`session_id` alone resolves to the latest round, which is what you want when recovering a session.) **Long waits are normal** — frontier-model panels typically take 15–120s, and 60+ seconds isn't a failure signal. Tell the user upfront ("running a panel — expect ~30–60s") so the wait doesn't feel broken.
+3. Call `wait_for_round` with the `session_id` and `round_id` from the acknowledgement. (`session_id` alone resolves to the latest round, which is what you want when recovering a session.) **Long waits are normal** — frontier-model panels typically take 15–120s, and 60+ seconds isn't a failure signal. Tell the user upfront ("running a panel — expect ~30–60s") so the wait doesn't feel broken. If your client can run a subagent, hand this wait to one: see [Hand the wait to a subagent](#hand-the-wait-to-a-subagent).
 4. Branch on the response's `structuredContent.recommended_client_action` rather than parsing prose. The 5-value enum tells you exactly what to do:
 
    | Action | What it means | What to do |
@@ -55,6 +55,22 @@ These are defaults. If the user prefers more autonomy (e.g., "don't ask before a
 5. On a usable round, `wait_for_round` returns that round only, in reading order: a status line, the reacted-to claims in four groups (see [Reading the reactions](#reading-the-reactions)), the Takeaway if you asked for one, then each model's response. Read the **grouped reactions first**, then relevant participant prose. The reactions are the navigation layer; prose is the supporting evidence. They're also your privileged preview — participants haven't seen each other's reactions, you have (see [Reactions are in the ledger](#reactions-are-in-the-ledger-responses-are-on-the-record)).
 6. Synthesize what the panel said for the user and surface the round's `web_url` (see [After each round](#after-each-round)). Agree with them whether another round would help.
 7. To continue, call `append_round` with a steering `prompt` (required) and your reactions in `snippets` (optional, and the highest-signal part). Otherwise stop.
+
+## Hand the wait to a subagent
+
+Panel rounds take 15–120s and return full essays from 2–3 models. If your client supports subagents, delegate `wait_for_round` so the wait and the raw prose stay out of your main thread:
+
+1. **You** call `create_deliberation` or `append_round`, and keep the `session_id` and `round_id`.
+2. Start one subagent **on the model you are running**, in the background if your client allows; it reports back when done, so don't poll it. Pass the `session_id`, the `round_id`, and a few lines on the user's decision and constraints. It calls `wait_for_round` (`detail: "full"`, again on `poll_again`) and nothing else: no create, append or share. If the result is saved to a file or truncated, it reads the full file first.
+3. It hands back:
+   - **The round verbatim, omitting only `### Responses`.** Keep the status line, the grouped reactions, the Takeaway if present, any note that a model failed or was cut off, and the `Web URL`.
+   - **Not in the reactions:** up to 5 decision-relevant risks, caveats, alternatives or shifts from the responses that no reaction covers, each a short verbatim quote with the model name. `None` if there are none; say so if more were left out.
+   - **Tone (1–2 lines):** confidence or framing the reactions don't show.
+4. Work from that as you would from the round itself: summarize for the user, surface the `web_url`, and agree whether to continue.
+
+Quote only text you hold verbatim: a claim's quote or a "Not in the reactions" line. If the decision hinges on exact wording elsewhere, read that round yourself with `wait_for_round` (its `round_id`, `detail: "full"`).
+
+No subagents in your client: call `wait_for_round` directly. `ask_a_model` returns one answer, so read it directly. `detail: "compact"` is for re-reading a session you have already summarized, not for a first read.
 
 ## One model instead of a panel
 
