@@ -1,6 +1,6 @@
 # mumo SKILL.md build system
 
-The `mumo-mcp` repo is the canonical source for the mumo SKILL.md content used across all six client packages (Claude Code, Codex, Cursor, VS Code, Hermes Agent, OpenClaw). This script renders the tokenized baseline into each client's `SKILL.md` by combining the shared kernel with per-client config and partials.
+The `mumo-mcp` repo is the canonical source for the mumo SKILL.md content used across all seven client packages (Claude Code, Codex, Google Antigravity, Cursor, VS Code, Hermes Agent, OpenClaw). This script renders the tokenized baseline into each client's `SKILL.md` by combining the shared kernel with per-client config and partials.
 
 ## Layout
 
@@ -59,7 +59,7 @@ Verify exits non-zero on any drift and reports the first differing line.
 
 1. Edit `skills/mumo/SKILL.template.md` for shared-kernel changes.
 2. Edit `scripts/clients/<client>/setup.md` or `frontmatter.yml` for per-client overlay changes.
-3. Run `node scripts/build-skill.js --all` to render to all six target paths (sibling repos at `../mumo-<client>/...`).
+3. Run `node scripts/build-skill.js --all` to render to all seven target paths (sibling repos at `../mumo-<client>/...`).
 4. Commit changes in each affected client repo separately.
 5. In CI for each client repo, run `node ../mumo-mcp/scripts/build-skill.js --verify <client>` (or however the client repo accesses mumo-mcp) to catch drift before merge.
 
