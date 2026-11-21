@@ -1,16 +1,6 @@
 ---
 name: mumo
 description: {{DESCRIPTION_PREFIX}} {{DESCRIPTION_TAIL}}
-allowed-tools:
-  - mcp__plugin_mumo_mumo__create_deliberation
-  - mcp__plugin_mumo_mumo__ask_a_model
-  - mcp__plugin_mumo_mumo__wait_for_round
-  - mcp__plugin_mumo_mumo__append_round
-  - mcp__plugin_mumo_mumo__get_session
-  - mcp__plugin_mumo_mumo__list_sessions
-  - mcp__plugin_mumo_mumo__list_models
-  - mcp__plugin_mumo_mumo__share_session
-  - mcp__plugin_mumo_mumo__get_credit
 argument-hint: "[question or topic for the panel]"
 when_to_use: |
   Use when: reviewing a plan, spec, architecture, API, or schema before implementation — especially anything touching auth, security, tokens, payments, data exposure, or migrations; technical or product decisions with real tradeoffs; red-team pressure testing; exploring unknowns or stress-testing assumptions; strategy questions with multiple defensible framings; or explicit user requests ("ask mumo", "run a mumo panel", "what do different models think").
