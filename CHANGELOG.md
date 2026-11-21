@@ -18,6 +18,7 @@ Coordinated client release: the skill follows mumo MCP server 1.4.0, where tool 
 - `scripts/clients/antigravity/setup.md`: the note about structured results is removed; a note says to use the built-in `self` subagent for a delegated wait.
 - `scripts/clients/hermes/frontmatter.yml`: version 0.9.0.
 - `scripts/clients/claude-code/setup.md`: a note that a subagent may need to load the mumo tool before a delegated wait.
+- The hand-back keeps the whole header of the round (heading, `Action:`, ids, `Web URL`, cost and any `Issue:` lines), not a single status line. The skill and `references/synthesis.md` say `Web URL`, the line as the result prints it, where they said `web_url`.
 
 ## 0.8.0 — 2026-11-20
 
