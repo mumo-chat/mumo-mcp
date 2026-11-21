@@ -70,7 +70,7 @@ Panel rounds take 15–120s and return full essays from 2–3 models. If your cl
 
 Quote only text you hold verbatim: a claim's quote or a "Not in the reactions" line. If the decision hinges on exact wording elsewhere, read that round yourself with `wait_for_round` (its `round_id`, `detail: "full"`).
 
-No subagents in your client: call `wait_for_round` directly. `ask_a_model` returns one answer, so read it directly. `detail: "compact"` is for re-reading a session you have already summarized, not for a first read.
+No subagents in your client: call `wait_for_round` directly. `ask_a_model` asks one model, so read its answer yourself. `detail: "compact"` is for re-reading a session you have already summarized, not for a first read.
 
 ## One model instead of a panel
 
