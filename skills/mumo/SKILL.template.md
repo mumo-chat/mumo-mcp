@@ -61,10 +61,10 @@ These are defaults. If the user prefers more autonomy (e.g., "don't ask before a
 Panel rounds take 15–120s and return full essays from 2–3 models. If your client supports subagents, delegate `wait_for_round` so the wait and the raw prose stay out of your main thread:
 
 1. **You** call `create_deliberation` or `append_round`, and keep the `session_id` and `round_id`.
-2. Start one subagent **on the model you are running**, in the background if your client allows; it reports back when done, so don't poll it. Pass the `session_id`, the `round_id`, and a few lines on the user's decision and constraints. It calls `wait_for_round` (`detail: "full"`, again on `poll_again`) and nothing else: no create, append or share. If the result is saved to a file or truncated, it reads the full file first.
+2. Start one subagent **on the model you are running**, in the background if your client allows; it reports back when done, so don't poll it. Pass the `session_id`, the `round_id`, and a few lines on the user's decision and constraints. It calls `wait_for_round` (`detail: "full"`, again on `poll_again`) and nothing else: no create, append or share. It hands back only a finished round, never one that is still running. If the result is saved to a file or truncated, it reads the full file first; if no complete copy is available, it says its review was incomplete.
 3. It hands back:
    - **The round verbatim, omitting only `### Responses`.** Keep the status line, the grouped reactions, the Takeaway if present, any note that a model failed or was cut off, and the `Web URL`.
-   - **Not in the reactions:** up to 5 decision-relevant risks, caveats, alternatives or shifts from the responses that no reaction covers, each a short verbatim quote with the model name. `None` if there are none; say so if more were left out.
+   - **Not in the reactions:** every point from the responses that could change the user's decision and that no reaction covers, then up to 5 other decision-relevant points (concrete recommendations, risks, caveats, alternatives or shifts), each a short verbatim quote with the model name. `None` if there are none; say so if more were left out.
    - **Tone (1–2 lines):** confidence or framing the reactions don't show.
 4. Work from that as you would from the round itself: summarize for the user, surface the `web_url`, and agree whether to continue.
 
