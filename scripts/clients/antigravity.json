@@ -1,0 +1,16 @@
+{
+  "client": "antigravity",
+  "display_name": "Google Antigravity",
+  "target": "../mumo-antigravity/skills/mumo/SKILL.md",
+  "tokens": {
+    "APPLICATION_NAME": "\"Antigravity\"",
+    "MODERATOR_EXAMPLE": "the Gemini or Claude model Antigravity is currently running as",
+    "INSTALL_URL": "https://mumo.chat/install/antigravity",
+    "TOOL_NAMING_NOTE": "\n\nIn Antigravity's tool registry the four core loop tools (`create_deliberation`, `ask_a_model`, `wait_for_round`, `append_round`) load eagerly as `mcp_mumo_mumo_*`; the read and utility tools (`get_session`, `share_session`, `list_sessions`, `list_models`, `get_credit`) load lazily under server `mumo_mumo`.",
+    "DESCRIPTION_TAIL": "Connects via mumo OAuth sign-in in Google Antigravity."
+  },
+  "partials": {
+    "FRONTMATTER": "frontmatter.yml",
+    "SETUP_SECTION": "setup.md"
+  }
+}
