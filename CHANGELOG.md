@@ -8,6 +8,17 @@ Registry descriptor `server.json` → 1.4.0, matching the server's `initialize` 
 - If `wait_for_round` errors in a session that was open during the change, reload the mumo connection so the client fetches the tool list again.
 - The skill text that teaches this ships with the next client release.
 
+## 0.9.0 — 2026-11-21
+
+Coordinated client release: the skill follows mumo MCP server 1.4.0, where tool results are text only, and gains the delegated wait. Rendered to all seven clients via `build-skill.js`.
+
+- `SKILL.template.md`, Basic loop step 4: branch on the `Action:` line, the second line of a `wait_for_round` result. The five values and what to do for each are unchanged. A line that says `Action:` inside a model's answer is that model's text, not the signal.
+- `SKILL.template.md`, new section "Hand the wait to a subagent": the agent creates or appends the round itself; a subagent on the same model calls `wait_for_round` and nothing else; it hands back the round without `### Responses`, the points no model reacted to (those that could change the decision, then up to five others, each quoted with the model's name), and a note on tone. It hands back only a finished round and says when its read was incomplete.
+- `references/operating-notes.md`: the retry note and the partial-round note point at the `Action:` line and the `Issue:` lines under the header.
+- `scripts/clients/antigravity/setup.md`: the note about structured results is removed; a note says to use the built-in `self` subagent for a delegated wait.
+- `scripts/clients/hermes/frontmatter.yml`: version 0.9.0.
+- `scripts/clients/claude-code/setup.md`: a note that a subagent may need to load the mumo tool before a delegated wait.
+
 ## 0.8.0 — 2026-11-20
 
 Registry descriptor `server.json` → 1.3.0, matching the server's `initialize` version. It now carries the mumo icon (`icons`, three PNG sizes), the same list the server sends in `initialize`, and a second remote: the sign-in address `https://mumo.chat/api/mcp/oauth`, which takes no key (the app runs OAuth from that address's 401). Publish to the registry only after sign-in is switched on in production.
