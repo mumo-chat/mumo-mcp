@@ -1,15 +1,10 @@
 ---
 name: mumo
 description: {{DESCRIPTION_PREFIX}}
-version: 0.9.0
+version: 0.10.0
 author: mumo
 license: MIT
 platforms: [linux, macos, windows]
-required_environment_variables:
-  - name: MUMO_API_KEY
-    prompt: "mumo platform API key (mmo_live_*)"
-    help: "Create one at https://mumo.chat/settings/api-keys"
-    required_for: mumo MCP server authentication
 metadata:
   hermes:
     tags:
