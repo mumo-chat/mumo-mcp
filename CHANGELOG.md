@@ -1,5 +1,11 @@
 # Changelog
 
+## Registry descriptor 1.5.0 — 2026-11-23
+
+Registry descriptor `server.json` → 1.5.0, matching the server's `initialize` version.
+
+- `create_deliberation` and `ask_a_model` no longer take `improvement_consent` or `dataset_consent`, and results no longer report them. Sessions created or continued through the API or MCP are not used for Platform Improvement or Dataset Contribution. A client that still sends either field is accepted and the field is ignored.
+
 ## Registry descriptor 1.4.0 — 2026-11-21
 
 Registry descriptor `server.json` → 1.4.0, matching the server's `initialize` version. Publish to the registry only after the server change is live.
