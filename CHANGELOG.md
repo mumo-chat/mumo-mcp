@@ -1,5 +1,12 @@
 # Changelog
 
+## Google Antigravity skill setup — 2026-11-24
+
+Antigravity only (plugin 0.9.1); the other six clients render unchanged.
+
+- Signing in is described for the Antigravity Desktop app's Accounts tab first, then the CLI. To sign in again, sign out first.
+- A region refusal is relayed as written and not retried.
+
 ## Registry descriptor 1.5.0 — 2026-11-23
 
 Registry descriptor `server.json` → 1.5.0, matching the server's `initialize` version.
