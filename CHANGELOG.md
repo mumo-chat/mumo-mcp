@@ -1,5 +1,16 @@
 # Changelog
 
+## Registry descriptor 1.6.0 and skill notes — 2026-11-24
+
+Registry descriptor `server.json` → 1.6.0, matching the server's `initialize` version. The skill is re-rendered for all seven clients.
+
+- A failed model's line shows its error code and a fixed sentence saying what happened. Provider error text is no longer shown.
+- A response that did not finish normally shows a short state: reached its output limit, stopped at your credit limit, stopped by a safety filter, stopped by a copyright filter, stopped (unsupported language), or ended early.
+- Routine token counts are gone from tool results. A compact re-read shows the model and how it ended.
+- A result that begins `Error: internal_error` means mumo itself failed. The skill now tells the agent to say so and not to change the arguments.
+- A round's web link appears once, in the header. Acknowledgements no longer print a progress address or poll interval.
+- Refusal text is written by the MCP server from the refusal code.
+
 ## Google Antigravity skill setup — 2026-11-24
 
 Antigravity only (plugin 0.9.1); the other six clients render unchanged.
